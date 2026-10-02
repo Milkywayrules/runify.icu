@@ -37,17 +37,20 @@ Use for company stack, portfolio, and preferences — not for BMad wiring (skill
 
 ## Canonical product + stack (read before code)
 
-**Single source of truth:** [`_bmad-output/initiative-runify-icu/CANONICAL.md`](_bmad-output/initiative-runify-icu/CANONICAL.md) — locked MUST/MUST NOT, glossary, forbidden libraries.  
-Supporting: `product-brief-runify.md`, `stack-proposal.md` in the same folder.
+**Product (BMad):** [`_bmad-output/initiative-runify-icu/brief-runify-icu/brief-runify-icu.md`](_bmad-output/initiative-runify-icu/brief-runify-icu/brief-runify-icu.md) — v1 MUST/MUST NOT; initiative index [`initiative-runify-icu.md`](_bmad-output/initiative-runify-icu/initiative-runify-icu.md).
 
-When writing specs, tickets, PRs, or comments: use **MUST / MUST NOT / MAY**, name forbidden alternatives, one testable criterion per bullet (see CANONICAL §5). Do not rely on chat history or implicit defaults.
+**Architecture:** [`_bmad-output/initiative-runify-icu/architecture-runify-icu/architecture-runify-icu.md`](_bmad-output/initiative-runify-icu/architecture-runify-icu/architecture-runify-icu.md) — module boundaries, `AD-*`, notification app.
+
+**Stack scaffold detail:** [`archive/pre-bmad/stack-proposal.md`](_bmad-output/initiative-runify-icu/archive/pre-bmad/stack-proposal.md) until absorbed into spec — do not re-litigate in chat.
+
+When writing specs, tickets, PRs, or comments: use **MUST / MUST NOT / MAY**, one testable criterion per bullet. Do not rely on chat history or archived provisional product bullets.
 
 <!-- bmad:context -->
-<!-- Verified 2026-10-03 — CANONICAL.md is locked reference for all agents. Managed by bmad-project-context. -->
+<!-- Verified 2026-10-03 — product brief is BMad SoT; stack archive until architecture/spec. Managed by bmad-project-context after spec lock. -->
 
 ## runify.icu
 
-Runner journey web app (see CANONICAL for full locks). **P1:** integrations + race catalog + calendar + profile. **P2:** share cards. **Web only.** Stack: Better-T-Stack, Pages Router, Elysia + Eden Treaty (not tRPC), Zod-only, Drizzle, Mantine + scoped Tailwind, R2, Cloudflare proxy, Coolify.
+Runner journey web app (v1 wedge in product brief). **v1:** public catalog, login to save, private schedule, catalog-change alerts via a **bounded notification module in the monorepo** (extractable to its own deploy later), suggest→publish; **not** integrations, public profile, groups, share cards. **Data:** full audit fields; multiple status dimensions per entity where needed. **Web only.** Stack: Better-T-Stack, Pages Router, Elysia + Eden Treaty (not tRPC), Zod-only, Drizzle, Mantine + scoped Tailwind, R2, Cloudflare proxy, Coolify.
 
 ## Policy
 
@@ -58,7 +61,7 @@ Runner journey web app (see CANONICAL for full locks). **P1:** integrations + ra
 
 ## Where things are
 
-- **CANONICAL.md** first, then brief + stack: `_bmad-output/initiative-runify-icu/`
+- **Brief + initiative index:** `_bmad-output/initiative-runify-icu/brief-runify-icu/`, `initiative-runify-icu.md`
 - BMad tickets and specs: same folder as work progresses
 - Installed skills: `.agents/skills/` (`bmad-*`, `verasic-*`)
 
@@ -66,7 +69,7 @@ Runner journey web app (see CANONICAL for full locks). **P1:** integrations + ra
 
 - BMad runtime: **`uv`** + `_bmad/scripts/*`; after clone run **`bmad setup`** if `_bmad/` is stale.
 - GitHub agent mutations: load env via `.agents/skills/verasic-github-cli-init/scripts/load-gh-env.sh`, verify with `check-gh.sh` (not bare `gh auth status`).
-- App commands land after Better-T-Stack scaffold (see `stack-proposal.md`); CI job name **`ci`** until real lint/test wired.
+- App commands land after Better-T-Stack scaffold (see `archive/pre-bmad/stack-proposal.md`); CI job name **`ci`** until real lint/test wired.
 
 ## Conventions that differ from defaults
 

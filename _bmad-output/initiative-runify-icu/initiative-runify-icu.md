@@ -10,17 +10,31 @@ Verasic Labs product: **runify.icu**.
 
 Chat = intake. **BMad = system of record.** See [ARTIFACT-LIFECYCLE.md](./ARTIFACT-LIFECYCLE.md).
 
-### Provisional (retire when BMad outputs exist)
+### BMad outputs (read these)
 
-- `CANONICAL.md`, `product-brief-runify.md`, `stack-proposal.md` — **provisional-pre-bmad**; stack agreed in conversation, product still fuzzy
+| Path | Role |
+| --- | --- |
+| [`forge-runify-icu/`](./forge-runify-icu/) | Forged v1 wedge (input; complete) |
+| [`brief-runify-icu/brief-runify-icu.md`](./brief-runify-icu/brief-runify-icu.md) | Product brief (`status: draft`) |
+| [`brief-runify-icu/addendum.md`](./brief-runify-icu/addendum.md) | Spec-oriented detail |
+| [`brief-runify-icu/diagrams.md`](./brief-runify-icu/diagrams.md) | Mermaid companions (BMad-maintained) |
+| [`architecture-runify-icu/architecture-runify-icu.md`](./architecture-runify-icu/architecture-runify-icu.md) | Architecture spine (`status: final`) |
 
-### Recommended next step (product not clear yet)
+### Archive (stack hold only — not product SoT)
 
-1. **`bmad-forge-idea`** — pressure-test the runify concept using chat notes as input (one idea, sharpen scope)
-2. OR **`bmad-brainstorming`** — if you want many alternative angles/features before committing
-3. Then **`bmad-product-brief`** → **`bmad-architecture`** (record agreed stack) → **`bmad-spec`** → **`bmad-ticket`**
-4. Delete provisionals per ARTIFACT-LIFECYCLE
+[`archive/pre-bmad/`](./archive/pre-bmad/) — legacy stack/canonical text until **`bmad-architecture`** absorbs stack; **agents MUST NOT** read for product scope (use brief). Delete folder after architecture + spec migration per [ARTIFACT-LIFECYCLE.md](./ARTIFACT-LIFECYCLE.md).
 
-### Stack note
+### BMad-only agent read order
 
-Tech stack is **agreed**; do not re-litigate in forge/brainstorm unless you explicitly reopen it.
+1. `initiative-runify-icu.md` (this file)
+2. `brief-runify-icu/brief-runify-icu.md` + `addendum.md` + `diagrams.md`
+3. `forge-runify-icu/` — lineage only when reconciling scope
+4. **Not** `archive/pre-bmad/` unless explicitly running **`bmad-architecture`** stack import
+
+### Recommended next step
+
+1. **`bmad-spec`** — kernel from brief + architecture spine (`AD-*`)
+2. **`bmad-ticket`** — enablers: BTS scaffold, Pages migration, Eden, notification app shell
+4. **`bmad-ticket`** → **`bmad-build`**
+
+Stack is agreed; do not re-litigate unless you explicitly reopen it.

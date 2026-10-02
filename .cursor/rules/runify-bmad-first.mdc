@@ -21,7 +21,7 @@ If the user clearly says **no bmad**, **skip bmad**, **just do it in chat**, or 
 
 ## When the user "throws things" at you
 
-**Do not** treat chat as the system of record. **Do not** write or expand provisional docs in `_bmad-output/initiative-runify-icu/` (`product-brief-runify.md`, `stack-proposal.md`, `CANONICAL.md`) as a substitute for BMad.
+**Do not** treat chat as the system of record. **Do not** add new docs at `_bmad-output/initiative-runify-icu/` root except via BMad skills (see `initiative-runify-icu.md` index). **Do not** edit `archive/pre-bmad/` except during architecture/spec migration.
 
 Instead, in the **first reply**:
 
@@ -57,7 +57,7 @@ Files marked **`provisional-pre-bmad`** MUST be **removed or archived** once the
 
 ## Stack locks during ideation
 
-Tech stack for runify.icu is **agreed** (see provisional `CANONICAL.md` / `stack-proposal.md` until BMad architecture + spec absorb them). During **`bmad-forge-idea`** / **`bmad-brainstorming`**, do not re-open stack unless the user explicitly asks.
+Tech stack is **agreed** (import from `archive/pre-bmad/stack-proposal.md` only in **`bmad-architecture`** / **`bmad-spec`**; product SoT is `brief-runify-icu/`). During **`bmad-forge-idea`** / **`bmad-brainstorming`**, do not re-open stack unless the user explicitly asks.
 
 ## Harness paths
 
