@@ -15,14 +15,14 @@ Next: **`bmad-forge-idea`** or **`bmad-brainstorming`** → **`bmad-product-brie
 | Piece | Location |
 | --- | --- |
 | BMad skills + `_bmad/` runtime | `.agents/skills/bmad-*`, `_bmad/` |
-| Verasic GitHub governance + hooks | `.agents/skills/verasic-github-*`, `lefthook.yml`, `.github/workflows/ci.yml` |
+| Verasic harness (**cursor** profile) | `.cursor/skills/verasic-*`, `lefthook.yml`, `.github/workflows/ci.yml` |
 | Agent GitHub auth template | `.github-agent.local.example` → copy to `.github-agent.local` |
 
 ## Quick start in Cursor
 
 1. **`bmad status`** — BMad install should be **current**.
-2. **`bash .agents/skills/verasic-github-governance/scripts/doctor.sh`** — governance **PASS**.
-3. Set `GH_TOKEN` in `.github-agent.local`, then **`bash .agents/skills/verasic-github-cli-init/scripts/check-gh.sh`**.
+2. **`bash .cursor/skills/verasic-github-governance/scripts/doctor.sh`** — governance **PASS**.
+3. Set `GH_TOKEN` in `.github-agent.local`, then **`bash .cursor/skills/verasic-github-cli-init/scripts/check-gh.sh`**.
 4. **`bmad-spec`** using the product brief, then **`bmad-ticket`** → **`bmad-build`**.
 
 See [AGENTS.md](./AGENTS.md) for full agent rules.
@@ -30,7 +30,16 @@ See [AGENTS.md](./AGENTS.md) for full agent rules.
 ## Maintenance
 
 ```bash
+# BMad (skills.sh → .agents/skills/)
 npx skills update -p -y
+
+# Verasic (cursor profile → .cursor/skills/; pin bundle after release)
+npx skills add Milkywayrules/verasic-skills@v0.2.6 \
+  --skill verasic-init --skill verasic-github-governance \
+  --skill verasic-github-governance-init --skill verasic-github-cli-init \
+  --skill verasic-git-commits-convention --skill verasic-git-commits-audit -y
+VERASIC_INIT_BUNDLE_TAG=v0.2.6 bash .cursor/skills/verasic-init/scripts/init.sh --yes --profile cursor
+
 uv run .agents/skills/bmad/scripts/setup.py \
   --project-root "$(pwd)" \
   --skill "$(pwd)/.agents/skills/bmad" \

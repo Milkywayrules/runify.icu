@@ -63,12 +63,12 @@ Runner journey web app (v1 wedge in product brief). **v1:** public catalog, logi
 
 - **Brief + initiative index:** `_bmad-output/initiative-runify-icu/brief-runify-icu/`, `initiative-runify-icu.md`
 - BMad tickets and specs: same folder as work progresses
-- Installed skills: `.agents/skills/` (`bmad-*`, `verasic-*`)
+- Installed skills: BMad under `.agents/skills/` (`bmad-*`); Verasic under `.cursor/skills/` (`verasic-*`, **cursor** profile)
 
 ## Running and verifying
 
 - BMad runtime: **`uv`** + `_bmad/scripts/*`; after clone run **`bmad setup`** if `_bmad/` is stale.
-- GitHub agent mutations: load env via `.agents/skills/verasic-github-cli-init/scripts/load-gh-env.sh`, verify with `check-gh.sh` (not bare `gh auth status`).
+- GitHub agent mutations: load env via `.cursor/skills/verasic-github-cli-init/scripts/load-gh-env.sh`, verify with `check-gh.sh` (not bare `gh auth status`).
 - App commands land after Better-T-Stack scaffold (see `archive/pre-bmad/stack-proposal.md`); CI job name **`ci`** until real lint/test wired.
 
 ## Conventions that differ from defaults
@@ -85,8 +85,8 @@ Runner journey web app (v1 wedge in product brief). **v1:** public catalog, logi
 <!-- verasic-governance:start -->
 ## GitHub agent harness
 
-- Load `GH_TOKEN` before any `gh` mutation: `source .agents/skills/verasic-github-cli-init/scripts/load-gh-env.sh`.
-- Verify with `bash .agents/skills/verasic-github-cli-init/scripts/check-gh.sh` — never bare `gh auth status` in chat.
+- Load `GH_TOKEN` before any `gh` mutation: `source .cursor/skills/verasic-github-cli-init/scripts/load-gh-env.sh`.
+- Verify with `bash .cursor/skills/verasic-github-cli-init/scripts/check-gh.sh` — never bare `gh auth status` in chat.
 - Agents push **feature branches only**; never push to `main`.
 - Prefer HTTPS remotes with fine-grained PAT when SSH is unavailable.
 
