@@ -181,6 +181,18 @@
       "skillPath": "skills/bmod-method/SKILL.md",
       "computedHash": "2ed29056895d86350c439ce6a54834cea88e3e5e1761232b7fe109334147a101"
     },
+    "verasic-fusion": {
+      "source": "Milkywayrules/verasic-skills",
+      "sourceType": "github",
+      "skillPath": "skills/verasic-fusion/SKILL.md",
+      "computedHash": "0a274cdb78035bc82d25463147e69d081191d00b990c08b7f5df697d37c36187"
+    },
+    "verasic-git-commits-audit": {
+      "source": "Milkywayrules/verasic-skills",
+      "sourceType": "github",
+      "skillPath": "skills/verasic-git-commits-audit/SKILL.md",
+      "computedHash": "e77736bf3cbc63d76a46f9cebede32f1de7aea0c172901ecba75b75f6221df33"
+    },
     "verasic-git-commits-convention": {
       "source": "Milkywayrules/verasic-skills",
       "sourceType": "github",
@@ -197,13 +209,13 @@
       "source": "Milkywayrules/verasic-skills",
       "sourceType": "github",
       "skillPath": "skills/verasic-github-governance/SKILL.md",
-      "computedHash": "b0591dda6e8a1ae8241e0290b07e7af140e51301f6d3311a275939e8600c91dc"
+      "computedHash": "a7530fa92a4a784166aa5332580ad60872bcc241f0729bd31ab273545114d34b"
     },
     "verasic-github-governance-init": {
       "source": "Milkywayrules/verasic-skills",
       "sourceType": "github",
       "skillPath": "skills/verasic-github-governance-init/SKILL.md",
-      "computedHash": "070249ece007eef88b92c92905d3e67a639a47853a6f0a329d67bdbcfc8a7a73"
+      "computedHash": "15263fe61f9eecd2f483f433ed89b4a565b3a8a93a8381780caffec643e5217b"
     },
     "verasic-init": {
       "source": "Milkywayrules/verasic-skills",

@@ -21,7 +21,7 @@ Read-only `gh` (view, log, status) does not require this subagent.
 
 ## Required first step
 
-1. Load skill **verasic-github-governance** (`.agents/skills/verasic-github-governance/SKILL.md`)
+1. Load skill **verasic-github-governance** (`.cursor/skills/verasic-github-governance/SKILL.md`)
 2. Read `references/governance-protocol.md` and route via `references/factory-protocol.md` or plan-matrix as needed
 3. Ensure **verasic-github-cli-init** auth before `gh` mutations
 4. Prefer **verasic-github-governance-init** `factory.sh` for repo bootstrap
