@@ -19,6 +19,7 @@ Chat = intake. **BMad = system of record.** See [ARTIFACT-LIFECYCLE.md](./ARTIFA
 | [`brief-runify-icu/addendum.md`](./brief-runify-icu/addendum.md) | Spec-oriented detail |
 | [`brief-runify-icu/diagrams.md`](./brief-runify-icu/diagrams.md) | Mermaid companions (BMad-maintained) |
 | [`architecture-runify-icu/architecture-runify-icu.md`](./architecture-runify-icu/architecture-runify-icu.md) | Architecture spine (`status: final`) |
+| [`architecture-runify-icu/namespaces.md`](./architecture-runify-icu/namespaces.md) | Namespace A + Biome / depcruise lint |
 
 ### Archive (stack hold only — not product SoT)
 

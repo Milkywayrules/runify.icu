@@ -7,14 +7,15 @@ paradigm: modular monolith (extractable services)
 scope: runify.icu v1 monorepo — catalog, schedule, auth, notifications
 status: final
 created: "2026-10-03"
-updated: "2026-10-03"
+updated: "2026-10-03T02:40+07:00"
 binds:
   - brief-runify-icu
 sources:
   - brief-runify-icu/brief-runify-icu.md
   - brief-runify-icu/addendum.md
   - archive/pre-bmad/stack-proposal.md
-companions: []
+companions:
+  - architecture-runify-icu/namespaces.md
 ---
 
 # Architecture Spine — runify.icu
@@ -49,7 +50,7 @@ flowchart TB
 
 - **Binds:** `apps/server/src/modules/*`, `apps/web/src/features/*`
 - **Prevents:** Cross-feature deep imports, duplicated validation
-- **Rule:** **MUST NOT** import another feature’s internals. Shared schemas in `packages/validation`; cross-module calls via explicit public entrypoints only.
+- **Rule:** **MUST NOT** import another feature’s or namespace’s internals. Shared schemas in `packages/validation`; cross-module calls via explicit public entrypoints only. Namespace layout and import matrix: [`namespaces.md`](./namespaces.md).
 
 ### AD-3 — Notification module isolation
 
@@ -87,6 +88,18 @@ flowchart TB
 - **Prevents:** Scope creep into integrations, profile, groups, share cards
 - **Rule:** **MUST NOT** add Strava/Garmin/Coros sync, public profile URLs, groups, or share-card pipelines in v1 scaffolding. Integrations module folder **MAY** exist as empty/deferred stub only if spec explicitly schedules it later.
 
+### AD-9 — Domain namespaces (race / account / ops) [ADOPTED]
+
+- **Binds:** `apps/server/src/modules/*`, `apps/web/src/features/*`
+- **Prevents:** Flat module sprawl; race_admin conflated with platform super-admin paths
+- **Rule:** **MUST** use namespace roots **`race`**, **`account`**, **`ops`** with submodules as in [`namespaces.md`](./namespaces.md). **race_admin** work **MUST** live under `race/*`; **platform_super_admin** under `ops/*`. **`apps/notifications`** remains a separate app, not a fourth server namespace.
+
+### AD-10 — Biome + dependency-cruiser boundaries [ADOPTED]
+
+- **Binds:** repo root tooling, Turborepo `lint` task, CI `ci`
+- **Prevents:** Architecture rules existing only in docs; Biome vs ESLint duplicate lint
+- **Rule:** **Biome** **MUST** be the primary formatter and TS/JS linter. **dependency-cruiser** **MUST** enforce namespace import rules from `namespaces.md`. Turborepo **MUST** orchestrate both; Turborepo alone **MUST NOT** be treated as boundary enforcement. After BTS scaffold, reconcile away redundant ESLint overlap (keep ESLint only if required by a dependency; no second full lint stack).
+
 ## Consistency Conventions
 
 | Concern | Convention |
@@ -97,6 +110,7 @@ flowchart TB
 | Errors | Zod-validated API errors; shape defined once in `packages/validation` |
 | Logging | **pino** on server/notification apps; no raw `console.log` in prod paths |
 | Events | Past tense names `catalog.category_row.updated`; payload includes `affectedUserIds[]` for fan-out |
+| Lint / format | **Biome** (primary); **dependency-cruiser** (namespace boundaries); `turbo run lint` runs both post-scaffold |
 
 ## Stack
 
@@ -111,6 +125,8 @@ flowchart TB
 | Mantine | v7 |
 | better-auth | from BTS |
 | Turborepo | from BTS |
+| Biome | add at scaffold / first enabler if not in BTS |
+| dependency-cruiser | add with namespace config (AD-10) |
 
 Scaffold flags: `--api none`, `--frontend next`, `--backend elysia`, `--runtime bun`, `--database postgres`, `--orm drizzle`, `--auth better-auth`, `--addons turborepo` (see archived stack-proposal).
 
@@ -119,26 +135,34 @@ Scaffold flags: `--api none`, `--frontend next`, `--backend elysia`, `--runtime 
 ```text
 apps/
   web/src/
-    pages/                 # Pages Router ONLY
+    pages/
     features/
-      catalog/
-      schedule/
-      suggestions/
-      admin/
-      inbox/               # UI only; calls apps/notifications
+      race/
+        catalog/
+        schedule/
+        suggestions/
+      account/
+      ops/
+      inbox/               # calls apps/notifications
   server/src/
     modules/
-      auth/
-      catalog/
-      schedule/
-      suggestions/
-      admin/
-      rbac/
-  notifications/src/       # separate Elysia app — ingest, inbox, delivery
+      race/
+        catalog/
+        schedule/
+        suggestions/
+        api.ts             # mount /race/*
+      account/
+        auth/
+        rbac/
+        api.ts
+      ops/
+        platform/
+        api.ts
+  notifications/src/
 packages/
-  db/src/                  # domain schema (+ notification schema namespace)
-  validation/src/          # all Zod schemas
-  events/src/              # event type definitions + publisher interface
+  db/src/
+  validation/src/
+  events/src/
 ```
 
 Post-scaffold: remove/stop using `apps/web/src/app/`; wire Eden; Mantine shell; Tailwind **only** under future `features/share-cards/**` (deferred).
@@ -161,12 +185,13 @@ flowchart LR
 
 | Capability / Area | Lives in | Governed by |
 | --- | --- | --- |
-| Public catalog browse | `modules/catalog`, `features/catalog` | AD-2, AD-6, AD-8 |
-| Private schedule + hub visibility | `modules/schedule`, `features/schedule` | AD-2, AD-5, AD-8 |
-| Suggest → review → publish | `modules/suggestions`, `features/suggestions` | AD-2, AD-5 |
-| RBAC / super-admin | `modules/rbac`, `modules/admin` | AD-6 |
-| Catalog change notifications | `modules/catalog` (emit), `apps/notifications` (deliver), `features/inbox` | AD-3, AD-4 |
-| Login auth | `modules/auth` + better-auth | AD-6 |
+| Public catalog browse | `race/catalog`, `features/race/catalog` | AD-2, AD-6, AD-8, AD-9 |
+| Private schedule + hub visibility | `race/schedule`, `features/race/schedule` | AD-2, AD-5, AD-8, AD-9 |
+| Suggest → review → publish | `race/suggestions`, `features/race/suggestions` | AD-2, AD-5, AD-9 |
+| Login + RBAC | `account/auth`, `account/rbac`, `features/account` | AD-6, AD-9 |
+| Platform super-admin | `ops/platform`, `features/ops` | AD-6, AD-9 |
+| Catalog change notifications | `race/catalog` (emit), `apps/notifications`, `features/inbox` | AD-3, AD-4, AD-10 |
+| Repo lint / boundaries | Biome + dependency-cruiser via Turborepo | AD-10 |
 
 ## Deferred
 
@@ -176,3 +201,4 @@ flowchart LR
 - Promoting `apps/notifications` to external repo (design for it via AD-3/AD-4).
 - Email channel templates and provider (in-app first).
 - Exact notification event payload fields and DB schema names (`bmad-spec`).
+- dependency-cruiser rule file paths and `forbidden`/`allowed` presets (enabler ticket after BTS scaffold).
