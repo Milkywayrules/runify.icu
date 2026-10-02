@@ -181,6 +181,12 @@
       "skillPath": "skills/bmod-method/SKILL.md",
       "computedHash": "2ed29056895d86350c439ce6a54834cea88e3e5e1761232b7fe109334147a101"
     },
+    "verasic-fusion": {
+      "source": "Milkywayrules/verasic-skills",
+      "sourceType": "github",
+      "skillPath": "skills/verasic-fusion/SKILL.md",
+      "computedHash": "0a274cdb78035bc82d25463147e69d081191d00b990c08b7f5df697d37c36187"
+    },
     "verasic-git-commits-audit": {
       "source": "Milkywayrules/verasic-skills",
       "sourceType": "github",

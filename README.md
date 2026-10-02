@@ -15,7 +15,7 @@ Next: **`bmad-forge-idea`** or **`bmad-brainstorming`** → **`bmad-product-brie
 | Piece | Location |
 | --- | --- |
 | BMad skills + `_bmad/` runtime | `.agents/skills/bmad-*`, `_bmad/` |
-| Verasic harness (**cursor** profile) | `.cursor/skills/verasic-*`, `lefthook.yml`, `.github/workflows/ci.yml` |
+| Verasic harness (**cursor** profile) | `.cursor/skills/verasic-*` (incl. **fusion**), `lefthook.yml`, `.github/workflows/ci.yml` |
 | Agent GitHub auth template | `.github-agent.local.example` → copy to `.github-agent.local` |
 
 ## Quick start in Cursor
@@ -37,7 +37,9 @@ npx skills update -p -y
 npx skills add Milkywayrules/verasic-skills@v0.2.6 \
   --skill verasic-init --skill verasic-github-governance \
   --skill verasic-github-governance-init --skill verasic-github-cli-init \
-  --skill verasic-git-commits-convention --skill verasic-git-commits-audit -y
+  --skill verasic-git-commits-convention --skill verasic-git-commits-audit \
+  --skill verasic-fusion -y
+# if skills CLI lands under .agents/skills/, move verasic-* to .cursor/skills/
 VERASIC_INIT_BUNDLE_TAG=v0.2.6 bash .cursor/skills/verasic-init/scripts/init.sh --yes --profile cursor
 
 uv run .agents/skills/bmad/scripts/setup.py \
