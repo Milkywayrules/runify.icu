@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env*.local
+
+# Build / cache
+dist/
+build/
+.next/
+.turbo/
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+.idea/
+*.swp
+
+# BMad personal overrides (team files under _bmad/custom/ are committed)
+_bmad/custom/*.user.toml
+_bmad/config.user.toml
+_bmad/render/
+
+# Local databases
+*.db
+*.db-*
+
+# agent harness secrets
+.github-agent.local
+
+# skills CLI extra install targets (canonical: .agents/skills/)
+/agent/
+/.claude/

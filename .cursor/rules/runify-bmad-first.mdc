@@ -1,0 +1,66 @@
+---
+description: runify.icu — route product/planning/build work through BMad skills; chat is intake unless user opts out
+alwaysApply: true
+---
+
+# runify-bmad-first
+
+Default for **runify.icu**: product thinking, planning, specs, tickets, and multi-file implementation **go through BMad skills**, not ad-hoc chat execution.
+
+## No heavy assumptions (all models)
+
+**MUST NOT** infer product, scope, roles, or data rules from chat vibe or old docs without **asking the user to confirm** when the answer changes build behavior.
+
+When unsure: **one clear question** beats a detailed guess. The user prefers to answer and guide.
+
+Record confirmed decisions in BMad memlog / spec — not silent reinterpretation.
+
+## Opt-out
+
+If the user clearly says **no bmad**, **skip bmad**, **just do it in chat**, or similar — follow their request for that turn only.
+
+## When the user "throws things" at you
+
+**Do not** treat chat as the system of record. **Do not** write or expand provisional docs in `_bmad-output/initiative-runify-icu/` (`product-brief-runify.md`, `stack-proposal.md`, `CANONICAL.md`) as a substitute for BMad.
+
+Instead, in the **first reply**:
+
+1. Acknowledge what they said (one short paragraph).
+2. Name the **one BMad skill** to run next and **why**.
+3. Give a **copy-paste invoke line** (skill name + 1–2 sentences of intent).
+4. Offer **`bmad`** only if they need routing help.
+
+Stay in **intake/coach mode** until they invoke the skill or opt out. Small factual answers (one line, no planning) are OK without redirect.
+
+## Routing table
+
+| User intent | Skill | Notes |
+| --- | --- | --- |
+| Vague, many options, "help me ideate" | **`bmad-brainstorming`** | Diverge; many ideas on a topic |
+| One fuzzy product, stress-test assumptions | **`bmad-forge-idea`** | Converge; act or drop one idea |
+| Unsure the product is worth building | **`bmad-prfaq`** | Working Backwards challenge |
+| Clear enough to describe the product | **`bmad-product-brief`** | Formal brief under `_bmad-output/.../brief-*/` |
+| Stack / technical spine (locked stack already agreed — capture in architecture) | **`bmad-architecture`** | After brief or with spec |
+| Distill into buildable spec | **`bmad-spec`** | Kernel + companions; references locked stack |
+| Epics / stories / board | **`bmad-ticket`** | After spec |
+| Screens / flows | **`bmad-ux`** | When UI matters |
+| Code change | **`bmad-build`** | Per ticket or small scoped ask |
+| "What next?" / setup / initiative | **`bmad`** | Hub |
+| Research external facts | **`bmad-deep-recon`** | Not for stack re-decision |
+| Repo agent rules block | **`bmad-project-context`** | After spec stabilizes |
+
+## Artifact lifecycle (no duplication)
+
+Read `_bmad-output/initiative-runify-icu/ARTIFACT-LIFECYCLE.md`.
+
+Files marked **`provisional-pre-bmad`** MUST be **removed or archived** once the matching BMad output exists. **Do not** maintain parallel chat-born and BMad-born versions.
+
+## Stack locks during ideation
+
+Tech stack for runify.icu is **agreed** (see provisional `CANONICAL.md` / `stack-proposal.md` until BMad architecture + spec absorb them). During **`bmad-forge-idea`** / **`bmad-brainstorming`**, do not re-open stack unless the user explicitly asks.
+
+## Harness paths
+
+- Skills: `.agents/skills/`
+- Output: `_bmad-output/initiative-runify-icu/` (active initiative)
+- Agent index: root `AGENTS.md`

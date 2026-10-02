@@ -1,0 +1,5 @@
+[workflow]
+persistent_facts = [
+  "Tickets for runify.icu MUST link CANONICAL.md and use testable acceptance criteria (MUST/MUST NOT). Enabler stories (scaffold, Pages migration, Eden) are valid backlog items.",
+  " file:{project-root}/_bmad-output/initiative-runify-icu/CANONICAL.md",
+]

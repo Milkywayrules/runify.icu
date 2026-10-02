@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Forge report — runify.icu</title>
+  <style>
+    body { font-family: Georgia, serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.5; }
+    h1 { font-size: 1.35rem; }
+    .seal { margin: 2rem 0; text-align: center; }
+    .seal svg { width: 120px; height: 120px; }
+    .seal text { font: bold 11px sans-serif; fill: #8b0000; }
+    ul { padding-left: 1.2rem; }
+    .voices { font-size: 0.9rem; color: #444; margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Forge — runify.icu</h1>
+  <p><strong>Outcome: HARDENED</strong> — v1 wedge is clear enough for <code>bmad-product-brief</code>.</p>
+
+  <h2>Locked for v1</h2>
+  <ul>
+    <li>Login; RBAC (admin + runner on one account).</li>
+    <li>In-app admin catalog: events → categories (e.g. JRF 2026 HM).</li>
+    <li>Private my-races schedule from catalog rows only.</li>
+    <li>Suggest-a-race form → admin publish.</li>
+  </ul>
+
+  <h2>Out of v1</h2>
+  <ul>
+    <li>Integrations, public profile, groups, share cards.</li>
+    <li>Custom races on calendar; off-platform registration.</li>
+  </ul>
+
+  <h2>Surviving weak points (for spec)</h2>
+  <ul>
+    <li>Exact role names and permission matrix — confirm in spec.</li>
+    <li>Launch catalog size — editorial ops, not a fixed number now.</li>
+    <li>Suggestion form fields and admin workflow detail.</li>
+  </ul>
+
+  <div class="seal" aria-label="HARDENED">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="54" fill="#f5e6e6" stroke="#8b0000" stroke-width="3"/>
+      <circle cx="60" cy="60" r="44" fill="none" stroke="#8b0000" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="60" y="56" text-anchor="middle">HARDENED</text>
+      <text x="60" y="72" text-anchor="middle" font-size="9">2026-10-03</text>
+    </svg>
+  </div>
+
+  <p class="voices">Pressure-tested with: skeptical club runner, John (PM), Winston (architect), Mary (analyst). Guided by your answers — no stack reopen.</p>
+  <p>Artifacts: <code>forge-runify-icu.md</code>, <code>.memlog.md</code></p>
+</body>
+</html>

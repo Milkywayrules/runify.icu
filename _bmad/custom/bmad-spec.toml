@@ -1,0 +1,5 @@
+[workflow]
+persistent_facts = [
+  "Before writing or changing a spec, read {project-root}/_bmad-output/initiative-runify-icu/CANONICAL.md. Stack and v1 product rules there are locked; use MUST / MUST NOT in the spec; do not re-decide tRPC, App Router, Prisma, or login-vs-integration.",
+  " file:{project-root}/_bmad-output/initiative-runify-icu/CANONICAL.md",
+]

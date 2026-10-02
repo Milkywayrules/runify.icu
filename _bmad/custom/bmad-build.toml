@@ -1,0 +1,5 @@
+[workflow]
+persistent_facts = [
+  "Before implementing, read {project-root}/_bmad-output/initiative-runify-icu/CANONICAL.md. MUST use: Pages Router (pages/), Elysia + Eden Treaty, Zod-only validation, Drizzle, Mantine (Tailwind only in share-card paths), Bun (API), Node for Next prod.",
+  " file:{project-root}/_bmad-output/initiative-runify-icu/CANONICAL.md",
+]
